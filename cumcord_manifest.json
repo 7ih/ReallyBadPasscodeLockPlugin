@@ -1,0 +1,7 @@
+{
+  "name": "Passcode Lock",
+  "description": "Protect discord from casual snooping (PRESS F12 TO LOCK)",
+  "author": "7ih",
+  "file": "src/index.jsx",
+  "license": "MIT"
+}
