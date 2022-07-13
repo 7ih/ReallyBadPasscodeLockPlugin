@@ -1,10 +1,6 @@
-console.log("run code")
-
 import { store as st } from '@cumcord/pluginData/persist';
 import { ReactDOM } from '@cumcord/modules/common';
 import TextInput from './Components/TextInput';         // components taken from ugly-patootie's plugins
-
-//st.locked = false
 
 // check if variables are set
 if (typeof st.passcode !== "string")    st.passcode = "";
