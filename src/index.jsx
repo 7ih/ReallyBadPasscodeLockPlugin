@@ -1,6 +1,9 @@
 import { store as st } from '@cumcord/pluginData/persist';
 import { ReactDOM } from '@cumcord/modules/common';
+import { webpack } from '@cumcord/modules';
 import TextInput from './Components/TextInput';         // components taken from ugly-patootie's plugins
+import applystyles from "./styles.css";
+applystyles();
 
 // check if variables are set
 if (typeof st.passcode !== "string")    st.passcode = "";
@@ -16,8 +19,9 @@ let passwordHandler = function(val) {
     }
 }
 
+
 // #pclwrapper is neccessary for blocking inputs while locked
-// also it has to be added with appenChild as to not replace every single other element
+// also it has to be added with appendChild as to not replace every single other element
 
 const pclwrapper = document.createElement("div");
 pclwrapper.id = "pclwrapper";
@@ -42,32 +46,13 @@ const passcodeEntry = (
 ReactDOM.render(passcodeEntry, pclwrapper)
 document.body.appendChild(pclwrapper);      // if wrapper isnt under body it will sometimes break input focusing
 
-cumcord.patcher.injectCSS(`
-#pclwrapper {  
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: none;
-}
-#pclinputwrapper {
-    position: absolute;
-    margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 300px;
-    height: 50px;
-}`);
-
 //
 // end of password input
 //
 
+const blurElement = webpack.findByProps("notDevTools").notDevTools;
 let blurScreen = function(blur) {
-    cumcord.patcher.injectCSS(`.notDevTools-1zkgfK {filter: blur(${blur ? .8 : 0}rem);}`);
+    cumcord.patcher.injectCSS(`.${blurElement} {filter: blur(${blur ? .8 : 0}rem);}`);
 }
 
 let lock = function() {
@@ -104,6 +89,7 @@ function supressSpaces(e) {
     if (e.key === " ") e.preventDefault();
 }
 
+// 2 password boxes for confirming password
 function checkIfPasscodesMatch(val) {
     if (($("pclpass1").value.length === 0) && ($("pclpass2").value.length == 0))    st.passcode = "";
     else if ($("pclpass1").value === $("pclpass2").value)                           st.passcode = val;
