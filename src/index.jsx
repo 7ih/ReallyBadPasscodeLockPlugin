@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { store as st } from '@cumcord/pluginData/persist';
 import { ReactDOM } from '@cumcord/modules/common';
 import TextInput from './Components/TextInput';         // components taken from ugly-patootie's plugins
@@ -6,6 +7,20 @@ import TextInput from './Components/TextInput';         // components taken from
 if (typeof st.passcode !== "string")    st.passcode = "";
 if (typeof st.locked !== "boolean")     st.locked = false;
 
+=======
+console.log("run code")
+
+import { store as st } from '@cumcord/pluginData/persist';
+import { ReactDOM } from '@cumcord/modules/common';
+import TextInput from './Components/TextInput';         // components taken from ugly-patootie's plugins
+
+//st.locked = false
+
+// check if variables are set
+if (typeof st.passcode !== "string")    st.passcode = "";
+if (typeof st.locked !== "boolean")     st.locked = false;
+
+>>>>>>> c8c57b57531529eae48bdf919839c4caae867449
 //
 // create password input
 //
